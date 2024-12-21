@@ -13,7 +13,12 @@ ENV MC_SERVER_DIR=/minecraft/server/
 ENV MC_VERSION="FABRIC-1.20.4"
 ENV MC_SESSION_NAME="minecraft-server"
 
-# Copy necessary files
+# Append command script to container's root .bashrc
+# COPY scripts/commands.sh /tmp/commands.sh
+# RUN cat /tmp/commands.sh >> /root/.bashrc && rm /tmp/commands.sh
+COPY --chmod=+x scripts/minecraft-run.sh scripts/mcc.sh
+
+# Copy necessary server files
 COPY server/ server/
 COPY --chmod=+x mcscripts/ scripts/
 
