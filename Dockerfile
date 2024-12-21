@@ -20,8 +20,6 @@ COPY --chmod=+x mcscripts/ scripts/
 
 # Install java runtime package (for minecraft)
 RUN apk add --no-cache openjdk21-jre-headless
-# Install screen package (for minecraft server instance)
-# RUN apk add screen
 # Install bash (for run scripts)
 RUN apk add --no-cache bash
 

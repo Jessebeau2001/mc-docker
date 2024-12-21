@@ -1,5 +1,4 @@
 #!/bin/bash
-
 FIFO_FILE="/tmp/fifo_pipe"
 
 # Function to stop the Minecraft server gracefully
