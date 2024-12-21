@@ -2,12 +2,12 @@ services:
   minecraft-server:
     build: .
     container_name: minecraft-server
-    # restart: unless-stopped
+    restart: unless-stopped
     volumes:
-      - app-data:/minecraft/server
+      - minecraft-data:/minecraft/server
     ports:
       - "25565:25565"
     tty: true
 
 volumes:
-  app-data:
+  minecraft-data:
