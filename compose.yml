@@ -5,6 +5,9 @@ services:
     restart: unless-stopped
     volumes:
       - minecraft-data:/minecraft/server
+      - type: bind
+        source: ./world
+        target: /minecraft/server/world
     ports:
       - "25565:25565"
     tty: true
