@@ -1,7 +1,7 @@
 FROM alpine:latest as base
 
 # Setup info
-LABEL org.opencontainers.image.authors="jessegament@gmail.com"
+LABEL org.opencontainers.image.authors="jessegamen@gmail.com"
 LABEL version="0.0.1"
 LABEL description="WIP dockerized minecraft container."
 
@@ -15,7 +15,6 @@ ENV MC_SESSION_NAME="minecraft-server"
 
 # Copy necessary files
 COPY server/ server/
-RUN chmod +x server/start.sh
 COPY --chmod=+x mcscripts/ scripts/
 
 # Install java runtime package (for minecraft)
