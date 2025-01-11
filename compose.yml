@@ -6,10 +6,8 @@ services:
     container_name: minecraft-server
     restart: unless-stopped
     volumes:
-      - minecraft-data:/minecraft/server
-      - type: bind
-        source: ./server
-        target: /minecraft/server
+      - minecraft-data:/minecraft/server  # Mount Minecraft server data volume to persist server state
+      - ./server:/minecraft/server        # Bind mount for server configuration and files
     ports:
       - "25565:25565"
     tty: true
