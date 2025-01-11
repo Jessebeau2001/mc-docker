@@ -12,5 +12,17 @@ services:
       - "25565:25565"
     tty: true
 
+  backup-service:
+    image: busybox:latest
+    container_name: minecraft-backup
+    command: tar czf /backup/minecraft-$(date +%Y%m%d%H%M%S).tar.gz -C /data .
+    volumes:
+      - minecraft-data:/data:ro   # Read-only access to Minecraft data
+      - ./backups:/backup         # Mount host backup directory
+    entrypoint: []
+    restart: "no"
+    profiles:
+      - backup
+
 volumes:
   minecraft-data:
