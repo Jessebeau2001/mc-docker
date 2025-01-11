@@ -1,6 +1,8 @@
 services:
   minecraft-server:
     build: .
+    environment:
+      - SERVER_JAR=fabric-server.jar
     container_name: minecraft-server
     restart: unless-stopped
     volumes:
