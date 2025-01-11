@@ -15,7 +15,7 @@ ENV SERVER_JAR=minecraft-server.jar
 # Append command script to container's root .bashrc
 # COPY scripts/commands.sh /tmp/commands.sh
 # RUN cat /tmp/commands.sh >> /root/.bashrc && rm /tmp/commands.sh
-COPY --chmod=+x scripts/minecraft-run.sh scripts/mcc.sh
+COPY --chmod=+x mcscripts/ scripts/
 
 # Install java runtime package (for minecraft)
 RUN apk add --no-cache openjdk21-jre-headless
