@@ -10,6 +10,7 @@ WORKDIR /minecraft
 
 # Setup envs
 ENV MC_SERVER_DIR=/minecraft/server/
+ENV SERVER_JAR=minecraft-server.jar
 
 # Append command script to container's root .bashrc
 # COPY scripts/commands.sh /tmp/commands.sh

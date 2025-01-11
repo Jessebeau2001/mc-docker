@@ -14,11 +14,13 @@ function stop_server() {
     echo "Minecraft server stopped."
 }
 
-# Trap signals for graceful shutdown
-trap stop_server SIGINT SIGQUIT SIGTERM
-
 # Navigate to the server directory
 cd "$MC_SERVER_DIR" || { echo "Failed to navigate to \"$MC_SERVER_DIR\""; exit 1; }
+# Check whether server jar exists
+[ -f "$SERVER_JAR" ] || { echo "Could not find server jar \"$SERVER_JAR\" does not exist."; exit 1; }
+
+# Trap signals for graceful shutdown
+trap stop_server SIGINT SIGQUIT SIGTERM
 
 # Create a named pipe (FIFO) for passing commands to the server
 mkfifo "$FIFO_FILE"
