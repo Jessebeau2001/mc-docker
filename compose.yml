@@ -6,23 +6,21 @@ services:
     container_name: minecraft-server
     restart: unless-stopped
     volumes:
-      - minecraft-data:/minecraft/server  # Mount Minecraft server data volume to persist server state
-      - ./server:/minecraft/server        # Bind mount for server configuration and files
+      - ./server:/minecraft/server
     ports:
       - "25565:25565"
     tty: true
+    profiles:
+      - server
 
   backup-service:
     image: busybox:latest
     container_name: minecraft-backup
-    command: tar czf /backup/minecraft-$(date +%Y%m%d%H%M%S).tar.gz -C /data .
+    command: sh /backup.sh /minecraft/server/world /backup
     volumes:
-      - minecraft-data:/data:ro   # Read-only access to Minecraft data
-      - ./backups:/backup         # Mount host backup directory
-    entrypoint: []
+      - ./backups:/backup
+      - ./server:/minecraft/server
+      - ./mcscripts/backup.sh:/backup.sh
     restart: "no"
     profiles:
       - backup
-
-volumes:
-  minecraft-data:

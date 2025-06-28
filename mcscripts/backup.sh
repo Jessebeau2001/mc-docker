@@ -42,5 +42,8 @@ while :; do
     COUNTER=$((COUNTER + 1))
 done
 
-tar cvzf "$OUT_FILE" -C "$IN_FOLDER" .
+IN_DIR="$(dirname "$IN_FOLDER")"
+IN_BASE="$(basename "$IN_FOLDER")"
+
+tar cvzf "$OUT_FILE" -C "$IN_DIR" "$IN_BASE"
 echo "Backup created at: $OUT_FILE"
