@@ -8,7 +8,8 @@ services:
     volumes:
       - ./server:/minecraft/server
     ports:
-      - "25565:25565"
+      - "25564:25565/tcp"
+      - "25564:25565/udp"
     tty: true
     profiles:
       - server
