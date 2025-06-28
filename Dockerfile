@@ -15,11 +15,15 @@ ENV SERVER_JAR=minecraft-server.jar
 # Append command script to container's root .bashrc
 # COPY scripts/commands.sh /tmp/commands.sh
 # RUN cat /tmp/commands.sh >> /root/.bashrc && rm /tmp/commands.sh
-COPY --chmod=+x mcscripts/ scripts/
+COPY --chmod=+x scripts/ scripts/
 
 # Install java runtime package (for minecraft)
 RUN apk add --no-cache openjdk21-jre-headless
-# Install bash (for run scripts)
+
+# Install udev lib (minecraft whines if it doesn't have this)
+RUN apk add --no-cache eudev-libs
+
+# Install bash (for running scripts)
 RUN apk add --no-cache bash
 
 # Expose mc ports

@@ -20,7 +20,7 @@ services:
     volumes:
       - ./backups:/backup
       - ./server:/minecraft/server
-      - ./mcscripts/backup.sh:/backup.sh
+      - ./scripts/backup.sh:/backup.sh
     restart: "no"
     profiles:
       - backup
